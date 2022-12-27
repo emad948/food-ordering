@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "lib": [ "es2018" ],
+    "target": "ES2018",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "declaration": true,
+    "outDir": "./lib",
+    "strictNullChecks": false,
+    "types": [
+      "node",
+    ]
+  },
+  "files": [
+    "src/index.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "typings",
+    "**/*.test.ts"
+  ]
+}

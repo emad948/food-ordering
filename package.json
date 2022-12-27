@@ -1,0 +1,22 @@
+{
+  "name": "brockhaus-lunch-time",
+  "version": "0.1.0",
+  "description": "Food order app",
+  "scripts": {
+    "postinstall": "npm run bootstrap && npm run link",
+    "bootstrap": "lerna bootstrap",
+    "link": "lerna link",
+    "lint": "lerna exec --concurrency 1 -- npm run lint",
+    "lint:fix": "lerna exec --concurrency 1 -- npm run lint:fix",
+    "build": "lerna exec --concurrency 1 -- npm run build",
+    "build:interfaces": "lerna exec --scope @brockhaus/interfaces -- npm run build",
+    "start:frontend": "lerna exec --scope @brockhaus/lunch-time-frontend -- npm run start"
+  },
+  "devDependencies": {
+    "lerna": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/emad948/brockhaus"
+  }
+}

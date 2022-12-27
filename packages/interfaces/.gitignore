@@ -1,0 +1,16 @@
+# package directories
+node_modules
+
+lib/
+
+# Webpack directories
+.webpack
+
+*.js
+*.js.map
+
+!jest.config.js
+!webpack.config.js
+
+# Code coverage
+coverage
