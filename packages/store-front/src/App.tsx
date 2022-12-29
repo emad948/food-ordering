@@ -1,9 +1,16 @@
+import { CssBaseline, ThemeProvider } from '@mui/material';
 import React from 'react';
+
+import theme from './config/theme';
+import LandingPage from './views/landing-page';
 
 function App() {
   return (
     <div>
-      <p>emad</p>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <LandingPage />
+      </ThemeProvider>
     </div>
   );
 }

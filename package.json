@@ -10,7 +10,8 @@
     "lint:fix": "lerna exec --concurrency 1 -- npm run lint:fix",
     "build": "lerna exec --concurrency 1 -- npm run build",
     "build:interfaces": "lerna exec --scope @brockhaus/interfaces -- npm run build",
-    "start:frontend": "lerna exec --scope @brockhaus/lunch-time-frontend -- npm run start"
+    "start:frontend": "lerna exec --scope @brockhaus/lunch-time-frontend -- npm run start",
+    "start:backend": "lerna exec --scope @brockhaus/backend -- npm run start:dev"
   },
   "devDependencies": {
     "lerna": "^5.0.0"

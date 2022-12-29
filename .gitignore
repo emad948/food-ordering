@@ -1,5 +1,12 @@
 # compiled output
+/packages/backend/dist
+/packages/backend/node_modules
+
+/packages/storefront/node_modules/
+/packages/storefront/build/
+
 node_modules/
+.npm/
 
 # Logs
 logs
@@ -31,5 +38,3 @@ lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-
-ecs/
