@@ -1,5 +1,5 @@
-import { CreateOrder } from "@brockhaus/interfaces";
-import { ApiModelProperty } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import { CreateOrder } from '@brockhaus/interfaces';
+import { ApiModelProperty } from '@nestjs/swagger/dist/decorators/api-model-property.decorator';
 
 export class CreateOrderDto implements CreateOrder {
   @ApiModelProperty({ nullable: false, required: true })

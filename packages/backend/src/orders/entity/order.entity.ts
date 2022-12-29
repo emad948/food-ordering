@@ -1,5 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-import { OrderInterface } from "@brockhaus/interfaces";
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { OrderInterface } from '@brockhaus/interfaces';
 
 @Entity()
 export class Order implements OrderInterface {
