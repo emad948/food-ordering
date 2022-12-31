@@ -1,8 +1,9 @@
 import { Box, Button, Checkbox, FormControlLabel, SxProps, Typography } from '@mui/material';
-import { Field, Form, Formik } from 'formik';
+import { Field, Form, Formik, FormikHelpers } from 'formik';
 import { TextField } from 'formik-mui';
 import React from 'react';
 
+import { useOrderActions } from '../../../../../../hooks';
 import { OrderFormValues } from './order-form-values';
 
 const inputClass: SxProps = {
@@ -16,10 +17,25 @@ const initialValues: OrderFormValues = {
 };
 
 const NewOrderForm: React.FC = () => {
+  const { createOrder } = useOrderActions();
+
+  const submitHandler = async (values: OrderFormValues, formikHelpers: FormikHelpers<OrderFormValues>) => {
+    const successHandler = () => {
+      formikHelpers.setSubmitting(false);
+      formikHelpers.resetForm();
+    };
+
+    const errorHandler = () => {
+      formikHelpers.setSubmitting(false);
+    };
+
+    await createOrder(values, successHandler, errorHandler);
+  };
+
   return (
     <>
       <Box>
-        <Formik initialValues={initialValues} onSubmit={() => {}}>
+        <Formik initialValues={initialValues} onSubmit={submitHandler}>
           {(formikProps) => (
             <Form>
               <Typography mb={3} variant={'h2'}>
