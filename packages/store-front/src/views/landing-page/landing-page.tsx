@@ -6,6 +6,7 @@ import MainLayout from '../../layouts/main-layout';
 import HeroWithImage from './components/hero-with-image';
 import HowItWorks from './components/how-it-works';
 import OrderSection from './components/order-section';
+import Testimonials from './components/testimonials';
 
 const LandingPage: React.FC = () => {
   const orderSectionRef = useRef<HTMLDivElement>(null);
@@ -20,7 +21,9 @@ const LandingPage: React.FC = () => {
           <OrderSection ref={orderSectionRef} />
         </Container>
       </Box>
-      <Box sx={{ py: 20 }}></Box>
+      <Box sx={{ py: 8 }}>
+        <Testimonials />
+      </Box>
 
       <Box sx={{ backgroundColor: grayOne, py: 8 }}>
         <Container maxWidth="lg">
