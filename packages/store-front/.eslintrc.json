@@ -20,6 +20,9 @@
         "project": "./tsconfig.json"
     },
     "settings": {
+        "react": {
+            "version": "18.2.0"
+        },
         "import/resolver": {
             "typescript": {
                 "alwaysTryTypes": true

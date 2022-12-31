@@ -3,7 +3,7 @@ export interface OrderFormValues {
 
   customerName: string;
 
-  orderPrice?: number;
+  orderPrice: string;
 
   assistant?: boolean;
 }

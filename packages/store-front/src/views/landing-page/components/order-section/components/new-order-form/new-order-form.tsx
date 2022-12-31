@@ -1,9 +1,12 @@
 import { Box, Button, Checkbox, FormControlLabel, SxProps, Typography } from '@mui/material';
 import { Field, Form, Formik, FormikHelpers } from 'formik';
 import { TextField } from 'formik-mui';
-import React from 'react';
+import React, { useState } from 'react';
 
-import { useOrderActions } from '../../../../../../hooks';
+import AlertError from '../../../../../../components/alert-error';
+import HeroButton from '../../../../../../components/hero-button';
+import { useAppSelector, useOrderActions } from '../../../../../../hooks';
+import validation from './form-validation';
 import { OrderFormValues } from './order-form-values';
 
 const inputClass: SxProps = {
@@ -13,29 +16,54 @@ const inputClass: SxProps = {
 const initialValues: OrderFormValues = {
   orderDescription: '',
   customerName: '',
+  orderPrice: '',
   assistant: false,
 };
 
 const NewOrderForm: React.FC = () => {
   const { createOrder } = useOrderActions();
+  const { errorMsg } = useAppSelector((root) => root.order);
+  const [orderedSuccessfully, setOrderedSuccessfully] = useState(false);
 
   const submitHandler = async (values: OrderFormValues, formikHelpers: FormikHelpers<OrderFormValues>) => {
     const successHandler = () => {
       formikHelpers.setSubmitting(false);
       formikHelpers.resetForm();
+      setOrderedSuccessfully(true);
     };
 
     const errorHandler = () => {
       formikHelpers.setSubmitting(false);
     };
 
-    await createOrder(values, successHandler, errorHandler);
+    await createOrder({ ...values, orderPrice: +values.orderPrice }, successHandler, errorHandler);
   };
+
+  if (orderedSuccessfully) {
+    return (
+      <>
+        <Typography variant={'h2'} component={'p'} mb={2}>
+          Vielen Dank,
+        </Typography>
+        <Typography mb={2}>
+          Wir haben deine Bestellung erhalten. Wir werden jetzt mit der Vorbereitung Ihres Essens beginnen.
+        </Typography>
+        <HeroButton
+          size={'medium'}
+          onClick={() => {
+            setOrderedSuccessfully(false);
+          }}
+          label="Zurück"
+        />
+      </>
+    );
+  }
 
   return (
     <>
+      <AlertError errorMsg={errorMsg} mb={2} />
       <Box>
-        <Formik initialValues={initialValues} onSubmit={submitHandler}>
+        <Formik initialValues={initialValues} onSubmit={submitHandler} validate={validation} validateOnMount={true}>
           {(formikProps) => (
             <Form>
               <Typography mb={3} variant={'h2'}>
