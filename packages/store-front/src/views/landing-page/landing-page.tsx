@@ -1,5 +1,5 @@
 import { Box, Container } from '@mui/material';
-import React, { useRef } from 'react';
+import React from 'react';
 
 import { grayOne } from '../../config/theme/colors';
 import MainLayout from '../../layouts/main-layout';
@@ -9,16 +9,14 @@ import OrderSection from './components/order-section';
 import Testimonials from './components/testimonials';
 
 const LandingPage: React.FC = () => {
-  const orderSectionRef = useRef<HTMLDivElement>(null);
-
   return (
     <MainLayout>
       <Container maxWidth="lg">
-        <HeroWithImage orderRef={orderSectionRef} />
+        <HeroWithImage />
       </Container>
       <Box sx={{ backgroundColor: grayOne, py: 8 }}>
         <Container maxWidth="lg">
-          <OrderSection ref={orderSectionRef} />
+          <OrderSection />
         </Container>
       </Box>
       <Box sx={{ py: 8 }}>

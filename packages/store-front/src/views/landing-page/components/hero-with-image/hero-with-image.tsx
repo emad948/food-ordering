@@ -1,11 +1,7 @@
 import { Box, Grid, SxProps, Typography, useTheme } from '@mui/material';
-import React, { RefObject } from 'react';
+import React from 'react';
 
 import HeroButton from '../../../../components/hero-button';
-
-export interface HeroWithImageProps {
-  orderRef: RefObject<HTMLDivElement>;
-}
 
 const heroStyle: SxProps = {
   width: '100%',
@@ -27,7 +23,7 @@ const subtitleStyle: SxProps = {
   lineHeight: '30px',
 };
 
-const HeroWithImage: React.FC<HeroWithImageProps> = ({ orderRef }) => {
+const HeroWithImage: React.FC = () => {
   const theme = useTheme();
 
   return (
@@ -42,13 +38,7 @@ const HeroWithImage: React.FC<HeroWithImageProps> = ({ orderRef }) => {
             Essen bestellen in der Firmenkantine war noch nie so einfach und spaßig! Probieren Sie es aus und genießen
             Sie die Bequemlichkeit und Auswahl, die wir Ihnen bieten.
           </Typography>
-          <HeroButton
-            onClick={() => {
-              const y = (orderRef.current?.getBoundingClientRect()?.top ?? 0) - 120;
-              window.scrollTo({ top: y, behavior: 'smooth' });
-            }}
-            label={'Jetzt bestellen'}
-          />
+          <HeroButton label={'Jetzt bestellen'} />
         </Grid>
         <Grid item xs={12} md={6}>
           <Box display="flex" justifyContent="flex-end">

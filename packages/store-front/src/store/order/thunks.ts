@@ -1,4 +1,5 @@
 import { CreateOrder } from '@brockhaus/interfaces';
+import { Order } from '@brockhaus/interfaces/lib/order/order';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { apiAxios } from '../../axios';
@@ -15,3 +16,8 @@ export const createOrder = createAsyncThunk(
     }
   },
 );
+
+export const getOrders = createAsyncThunk('order/get-orders', async (): Promise<Order[]> => {
+  const res = await apiAxios.get<Order[]>('/orders');
+  return res.data;
+});

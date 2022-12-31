@@ -23,7 +23,12 @@
     "formik-mui": "^5.0.0-alpha.0",
     "@reduxjs/toolkit": "^1.9.1",
     "react-redux": "^8.0.5",
-    "axios": "^1.2.2"
+    "axios": "^1.2.2",
+    "react-router": "^6.6.1",
+    "react-router-dom": "^6.6.1",
+    "@types/react-router-dom": "^5.3.3",
+    "mui-datatables": "^4.2.2",
+    "@types/mui-datatables": "^3.7.9"
   },
   "scripts": {
     "start": "react-scripts start",

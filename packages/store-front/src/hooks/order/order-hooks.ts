@@ -2,7 +2,7 @@
 import { CreateOrder } from '@brockhaus/interfaces';
 import { useMemo } from 'react';
 
-import { createOrder } from '../../store/order';
+import { createOrder, getOrders } from '../../store/order';
 import { useAppDispatch } from '../store';
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const useOrderActions = () => {
@@ -11,6 +11,7 @@ export const useOrderActions = () => {
     () => ({
       createOrder: (createOrderDto: CreateOrder, onSuccess: () => void, onError: () => void) =>
         dispatch(createOrder({ createOrderDto, onSuccess, onError })),
+      getOrders: () => dispatch(getOrders()),
     }),
     [dispatch],
   );

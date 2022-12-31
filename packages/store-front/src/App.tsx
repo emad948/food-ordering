@@ -3,7 +3,7 @@ import React from 'react';
 
 import PageLoadingIndicator from './components/page-loading-indicator';
 import theme from './config/theme';
-import LandingPage from './views/landing-page';
+import Routes from './routes';
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <PageLoadingIndicator />
         <CssBaseline />
-        <LandingPage />
+        <Routes />
       </ThemeProvider>
     </div>
   );
