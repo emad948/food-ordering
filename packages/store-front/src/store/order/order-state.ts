@@ -1,8 +1,8 @@
-import { Order } from '@brockhaus/interfaces/lib/order/order';
+import { OrderInterface } from '@brockhaus/interfaces';
 
 export interface OrderState {
   loading: boolean;
   errorMsg: string | null;
 
-  orders: Order[];
+  orders: OrderInterface[];
 }

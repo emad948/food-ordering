@@ -1,4 +1,4 @@
-import { Order } from '@brockhaus/interfaces/lib/order/order';
+import { OrderInterface } from '@brockhaus/interfaces';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { IconButton, Menu, MenuItem } from '@mui/material';
 // eslint-disable-next-line import/no-named-as-default
@@ -9,7 +9,7 @@ import dataTableConfig from '../../../../config/datatables';
 import { formatCurrency, formatNumber } from '../../../../libs/format-lib';
 
 export interface OrdersTableProps {
-  orders: Order[];
+  orders: OrderInterface[];
 }
 
 const OrdersTable: React.FC<OrdersTableProps> = ({ orders }) => {
@@ -88,7 +88,7 @@ const OrdersTable: React.FC<OrdersTableProps> = ({ orders }) => {
     },
   ];
 
-  const orderList: string[][] = orders.map((order: Order): string[] => [
+  const orderList: string[][] = orders.map((order: OrderInterface): string[] => [
     formatNumber(order.id),
     order.customerName,
     order.orderDescription,
