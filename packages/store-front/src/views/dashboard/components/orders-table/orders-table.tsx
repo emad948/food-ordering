@@ -6,6 +6,7 @@ import MUIDataTable, { MUIDataTableColumnDef, MUIDataTableMeta, MUIDataTableOpti
 import React from 'react';
 
 import dataTableConfig from '../../../../config/datatables';
+import { useOrderActions } from '../../../../hooks';
 import { formatCurrency, formatNumber } from '../../../../libs/format-lib';
 
 export interface OrdersTableProps {
@@ -15,8 +16,16 @@ export interface OrdersTableProps {
 const OrdersTable: React.FC<OrdersTableProps> = ({ orders }) => {
   const [menuAnchor, setMenuAnchor] = React.useState<{ [key: string]: Element }>({});
 
+  const { updateOrderPayStatus, getOrders } = useOrderActions();
+
+  const updatePayStatusHandler = (order: OrderInterface) => {
+    updateOrderPayStatus(order.id, !order.payed, () => {
+      getOrders().catch((err) => console.log(err));
+    }).catch((err) => console.log(err));
+  };
+
   const menuSelectHandler = (tableMeta: MUIDataTableMeta, event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    // Types are not correct for version 3.7.7
+    // Types are not correct
     const { index } = tableMeta.currentTableData[tableMeta.rowIndex] as unknown as { index: number };
     setMenuAnchor({ [index]: event.currentTarget });
   };
@@ -24,6 +33,12 @@ const OrdersTable: React.FC<OrdersTableProps> = ({ orders }) => {
     // Types are not correct for version 3.7.7
     const { index } = tableMeta.currentTableData[tableMeta.rowIndex] as unknown as { index: number };
     return index;
+  };
+
+  const getOrder = (tableMeta: MUIDataTableMeta): OrderInterface => {
+    // Types are not correct for version 3.8.5
+    const { index } = tableMeta.currentTableData[tableMeta.rowIndex] as unknown as { index: number };
+    return orders[index];
   };
 
   const options: MUIDataTableOptions = {
@@ -77,6 +92,7 @@ const OrdersTable: React.FC<OrdersTableProps> = ({ orders }) => {
               <MenuItem
                 onClick={() => {
                   setMenuAnchor({});
+                  updatePayStatusHandler(getOrder(tableMeta));
                 }}
               >
                 Bezahlstatus ändern

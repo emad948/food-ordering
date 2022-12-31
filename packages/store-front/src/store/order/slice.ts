@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { CreateNewOrder } from '../../model/errors/order/create-new-order';
 import { GetOrdersError } from '../../model/errors/order/get-orders-error';
 import { OrderState } from './order-state';
-import { createOrder, getOrders } from './thunks';
+import { createOrder, getOrders, updateOrderPayStatus } from './thunks';
 
 const orderInitialState: OrderState = {
   loading: false,
@@ -44,6 +44,17 @@ export const orderSlice = createSlice({
       const appError = new GetOrdersError(payload.error);
       state.loading = false;
       state.errorMsg = appError.appMessage;
+    });
+
+    builder.addCase(updateOrderPayStatus.pending, (state: OrderState) => {
+      state.loading = true;
+      state.errorMsg = null;
+    });
+    builder.addCase(updateOrderPayStatus.fulfilled, (state: OrderState) => {
+      state.loading = false;
+    });
+    builder.addCase(updateOrderPayStatus.rejected, (state: OrderState) => {
+      state.loading = false;
     });
   },
 });
